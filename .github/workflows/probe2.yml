@@ -1,0 +1,14 @@
+name: Probe2
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe hello + workers
+        run: |
+          echo "hello: $(curl -s -m 15 https://test-hello.158504244.workers.dev/)"
+          echo "cfn-wd: $(curl -s -o /dev/null -w '%{http_code}' -m 15 https://cfn19970116.158504244.workers.dev/)"
+          echo "edt-wd: $(curl -s -o /dev/null -w '%{http_code}' -m 15 https://edt19970116.158504244.workers.dev/)"
+          echo "cfn-body: $(curl -s -m 15 https://cfn19970116.158504244.workers.dev/ | head -c 120)"
+          echo "edt-body: $(curl -s -m 15 https://edt19970116.158504244.workers.dev/ | head -c 120)"
