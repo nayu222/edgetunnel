@@ -1,0 +1,17 @@
+name: Probe
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe from GitHub (external view)
+        run: |
+          echo "=== cfn.19970116.xyz 订阅路径 x3 ==="
+          for i in 1 2 3; do curl -s -o /dev/null -w "try$i: %{http_code}\n" -m 15 "https://cfn.19970116.xyz/0376d0cf-7d9a-4f6c-aba2-cb5409de3858"; done
+          echo "=== cfn workers.dev ==="
+          curl -s -o /dev/null -w "%{http_code}\n" -m 15 "https://cfn19970116.158504244.workers.dev/"
+          echo "=== edt.19970116.xyz login ==="
+          curl -s -o /dev/null -w "%{http_code}\n" -m 15 "https://edt.19970116.xyz/login"
+          echo "=== cfn body 前200字符 ==="
+          curl -s -m 15 "https://cfn.19970116.xyz/0376d0cf-7d9a-4f6c-aba2-cb5409de3858" | head -c 200
