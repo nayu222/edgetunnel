@@ -1,8 +1,7 @@
-name = "v20251104"
+name = "edt19970116"
 main = "_worker.js"
 compatibility_date = "2025-11-04"
-keep_vars = true
 
-#[[kv_namespaces]]
-#binding = "KV"			#KV绑定名默认不可修改
-#id = ""				#KV数据库id
+[[kv_namespaces]]
+binding = "KV"
+id = "b5d3c7e76435444985f0e9297db944fc"
